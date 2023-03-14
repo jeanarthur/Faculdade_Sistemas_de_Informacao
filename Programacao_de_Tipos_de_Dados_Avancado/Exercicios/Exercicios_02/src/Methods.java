@@ -1,6 +1,3 @@
-import java.util.HashMap;
-import java.util.Map;
-
 public class Methods {
 
     // Exercício 1
@@ -29,43 +26,41 @@ public class Methods {
 
             int year = Integer.parseInt(dateParts[2]);
 
-            return String.format("%s de %s de %d", getNumberInString(day), getMonthName(month).toLowerCase(), year);
+            return String.format("%s de %s de %d", convertNumberToString(day), getMonthName(month).toLowerCase(), year);
 
         }
         throw new Exception("Data não esta no formato especificado");
     }
 
-    private static String getNumberInString(int number) {
-        Map<Integer, String> numbersInString = new HashMap<Integer, String>();
-        numbersInString.put(0, "Zero");
-        numbersInString.put(1, "Um");
-        numbersInString.put(2, "Dois");
-        numbersInString.put(3, "Três");
-        numbersInString.put(4, "Quatro");
-        numbersInString.put(5, "Cinco");
-        numbersInString.put(6, "Seis");
-        numbersInString.put(7, "Sete");
-        numbersInString.put(8, "Oito");
-        numbersInString.put(9, "Nove");
-        numbersInString.put(10, "Dez");
-        numbersInString.put(11, "Onze");
-        numbersInString.put(12, "Doze");
-        numbersInString.put(13, "Treze");
-        numbersInString.put(14, "Quatorze");
-        numbersInString.put(15, "Quinze");
-        numbersInString.put(16, "Dezesseis");
-        numbersInString.put(17, "Dezessete");
-        numbersInString.put(18, "Dezoito");
-        numbersInString.put(19, "Dezenove");
-        numbersInString.put(20, "Vinte");
-        numbersInString.put(30, "Trinta");
-
-        if (number < 21){ return numbersInString.get(number); }
-        else{
-            int dozens = Integer.parseInt(String.valueOf(String.valueOf(number).charAt(0))) * 10;
+    private static String convertNumberToString(int number) throws Exception {
+        if (number == 0) { return "Zero"; }
+        else if (number == 1) { return "Um"; }
+        else if (number == 2) { return "Dois"; }
+        else if (number == 3) { return "Três"; }
+        else if (number == 4) { return "Quatro"; }
+        else if (number == 5) { return "Cinco"; }
+        else if (number == 6) { return "Seis"; }
+        else if (number == 7) { return "Sete"; }
+        else if (number == 8) { return "Oito"; }
+        else if (number == 9) { return "Nove"; }
+        else if (number == 10) { return "Dez"; }
+        else if (number == 11) { return "Onze"; }
+        else if (number == 12) { return "Doze"; }
+        else if (number == 13) { return "Treze"; }
+        else if (number == 14) { return "Quatorze"; }
+        else if (number == 15) { return "Quinze"; }
+        else if (number == 16) { return "Dezesseis"; }
+        else if (number == 17) { return "Dezessete"; }
+        else if (number == 18) { return "Dezoito"; }
+        else if (number == 19) { return "Dezenove"; }
+        else if (number == 20) { return "Vinte"; }
+        else {
             int unit = Integer.parseInt(String.valueOf(String.valueOf(number).charAt(1)));
-            return String.format("%s e %s", numbersInString.get(dozens), numbersInString.get(unit).toLowerCase());
+            if (number < 30) { return "Vinte e " + convertNumberToString(unit).toLowerCase(); }
+            else if (number == 30) { return "Trinta"; }
+            else if (number < 40){ return "Trinta e " + convertNumberToString(unit).toLowerCase(); }
         }
+        return "";
     }
 
     private static String getMonthName(int month) throws Exception {
