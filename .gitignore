@@ -9,6 +9,8 @@ out/
 .idea/**/usage.statistics.xml
 .idea/**/dictionaries
 .idea/**/shelf
+.idea/encodings.xml
+.idea/csv-plugin.xml
 
 # AWS User-specific
 .idea/**/aws.xml
