@@ -6,9 +6,13 @@ import java.util.Scanner;
 
 public class Library {
     static List<Book> books = new ArrayList<>();
+    private static final String DATABASE_PATH = "Programacao_de_Tipos_de_Dados_Avancado/Trabalhos/Gestao_de_Biblioteca/src/database.csv";
+    private static final String REPORT_PATH= "Programacao_de_Tipos_de_Dados_Avancado/Trabalhos/Gestao_de_Biblioteca/reports/";
+    static String searchedBy = "";
 
     public static void main(String[] args) {
         boolean isRunning = true;
+        books = Book.parseBook(Csv.read(DATABASE_PATH));
 
         do{
             String[] menuOptions = {
@@ -24,9 +28,9 @@ public class Library {
             try {
                 switch (Integer.parseInt(option)){
                     case 1 -> addBook();
-                    case 2 -> removeBook();
-                    case 3 -> printMenu("Livros", listBooks(searchBooks()).toArray(new String[0]));
-                    case 4 -> generateReport();
+                    case 2 -> remove(searchBooks());
+                    case 3 -> search();
+                    case 4 -> generateReport(searchBooks());
                     case 5 -> isRunning = false;
                     default -> throw new Exception();
                 }
@@ -36,21 +40,48 @@ public class Library {
         } while(isRunning);
     }
 
-    private static void generateReport() {
-        LocalDateTime date = LocalDateTime.now();
-        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy_HH-mm-ss");
-        List<String[]> booksRecords = new ArrayList<>();
-        String[] header = {"nome_do_livro","numero_de_paginas","nome_do_autor","area_de_interesse"};
-        booksRecords.add(header);
+    private static void generateReport(List<Book> books) {
+        if (books.size() != 0){
+            LocalDateTime date = LocalDateTime.now();
+            DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy_HH-mm-ss");
+            List<String[]> booksRecords = new ArrayList<>();
+            String[] header = {"nome_do_livro","numero_de_paginas","nome_do_autor","area_de_interesse"};
+            booksRecords.add(header);
 
-        for (Book book : books){
-            String[] record = {book.getName(), String.valueOf(book.getPages()), book.getAuthor(), book.getArea()};
-            booksRecords.add(record);
+            for (Book book : books){
+                String[] record = {book.getName(), String.valueOf(book.getPages()), book.getAuthor(), book.getArea()};
+                booksRecords.add(record);
+            }
+
+            String filename = String.format("booksReportBy%s_%s.csv", searchedBy, date.format(dateFormatter));
+            Csv.write(booksRecords, REPORT_PATH + filename);
+            System.out.printf("\u001B[32mRelatório gerado com sucesso!\u001B[0m\nCaminho do arquivo: %s\n", REPORT_PATH + filename);
         }
+    }
 
-        String filename = "booksReport_" + date.format(dateFormatter);
-        Csv.write(booksRecords, filename);
-        System.out.printf("\u001B[32mRelatório: %s gerado com sucesso!\u001B[0m\n", filename);
+    public static void search(){
+        if (books.size() == 0){ System.out.println("Nenhum livro registrado no sistema!"); }
+        else {
+            List<Book> foundBooks = searchBooks();
+            while (true){
+                if (foundBooks.size() == 0){ break; }
+                List<String> booksList = listBooks(foundBooks);
+                booksList.add("Gerar Relatório da busca");
+                booksList.add("Remover um dos livros");
+                booksList.add("Voltar");
+                printMenu("Livros", booksList.toArray(new String[0]));
+                String option = getInput("Digite uma opção: ");
+
+                try {
+                    int optionValue = Integer.parseInt(option);
+                    if (optionValue == foundBooks.size() + 1) { generateReport(foundBooks); }
+                    else if (optionValue == foundBooks.size() + 2) { foundBooks = remove(foundBooks); }
+                    else if (optionValue == foundBooks.size() + 3) { break; }
+                    else if (optionValue < 1 || optionValue > foundBooks.size()) { throw new Exception(); }
+                } catch (Exception ex) { System.out.println("\u001B[31mOpção inválida!\u001B[0m"); System.out.println(ex.getMessage()); }
+
+            }
+        }
     }
 
     private static void addBook() {
@@ -58,37 +89,47 @@ public class Library {
         String name = getInput("Título: ");
         String author = getInput("Autor: ");
         String area = getInput("Área de interesse: ");
-        int pages = Integer.parseInt(getInput("Quantidade de páginas: "));
-        books.add(new Book(name, pages, author, area));
-        System.out.printf("\u001B[32mLivro: %s adicionado com sucesso!\u001B[0m\n", name);
+        try {
+            int pages = Integer.parseInt(getInput("Quantidade de páginas: "));
+            books.add(new Book(name, pages, author, area));
+            updateDatabase();
+            System.out.printf("\u001B[32mLivro: %s adicionado com sucesso!\u001B[0m\n", name);
+        } catch (Exception ex) { System.out.println("\u001B[31mErro ao cadastrar informações!\u001B[0m"); }
     }
 
-    private static void removeBook() {
-        List<Book> foundBooks = searchBooks();
-        if (foundBooks.size() == 1){
-            books.remove(foundBooks.get(0));
+    private static List<Book> remove(List<Book> bookList) {
+        if (bookList.size() == 0){ return new ArrayList<>(); }
+        if (bookList.size() == 1){
+            Book book = bookList.get(0);
+            books.remove(book);
+            System.out.printf("\u001B[32mLivro %s removido com sucesso!\u001B[0m\n", book.getName());
+            return new ArrayList<>();
         } else {
             boolean isSelecting = true;
             do{
-                List<String> booksList = listBooks(foundBooks);
+                List<String> booksList = listBooks(bookList);
                 booksList.add("Cancelar");
                 printMenu("Remover livro nº: ", booksList.toArray(new String[0]));
                 String option = getInput("Digite uma opção: ");
 
                 try {
                     int optionValue = Integer.parseInt(option);
-                    if (optionValue == foundBooks.size() + 1) { break; }
-                    if (optionValue < 1 || optionValue > foundBooks.size()) { throw new Exception(); }
-                    Book selectedBook = foundBooks.get(optionValue-1);
+                    if (optionValue == bookList.size() + 1) { break; }
+                    if (optionValue < 1 || optionValue > bookList.size()) { throw new Exception(); }
+                    Book selectedBook = bookList.get(optionValue-1);
                     books.remove(selectedBook);
+                    bookList.remove(selectedBook);
                     System.out.printf("\u001B[32mLivro %s removido com sucesso!\u001B[0m\n", selectedBook.getName());
                 } catch (Exception ex) {
                     System.out.println("\u001B[31mOpção inválida!\u001B[0m");
+                    System.out.println(ex.getMessage());
                     continue;
                 }
                 isSelecting = false;
             } while (isSelecting);
         }
+        updateDatabase();
+        return bookList;
     }
 
     public static List<String> listBooks(List<Book> books){
@@ -101,7 +142,7 @@ public class Library {
                                 Autor: %s
                                 Área de interesse: %s
                                 Número de páginas: %d
-                                
+                                \s
                                 """,
                         book.getName(), book.getAuthor(), book.getArea(), book.getPages()));
             }
@@ -112,20 +153,33 @@ public class Library {
 
     private static List<Book> searchByArea() {
         String area = getInput("Digite a area de interesse: ");
-        return books.stream().filter(book -> book.getArea().equals(area)).toList();
+        searchedBy = "Area_" + area;
+        List<Book> bookList = books.stream().filter(book -> book.getArea().equalsIgnoreCase(area)).toList();
+        if (bookList.size() == 0){ System.out.printf("Nenhum livro registrado com o área de interesse %s!%n", area); }
+        return bookList;
     }
 
     private static List<Book> searchByAuthor() {
         String author = getInput("Digite o nome do autor: ");
-        return books.stream().filter(book -> book.getAuthor().equals(author)).toList();
+        searchedBy = "Author_" + author;
+        List<Book> bookList = books.stream().filter(book -> book.getAuthor().equalsIgnoreCase(author)).toList();
+        if (bookList.size() == 0){ System.out.printf("Nenhum livro do autor %s registrado!%n", author); }
+        return bookList;
     }
 
     private static List<Book> searchByName() {
-        String name = getInput("Digite o nome: ");
-        return books.stream().filter(book -> book.getName().equals(name)).toList();
+        String name = getInput("Digite o título: ");
+        searchedBy = "Name_" + name;
+        List<Book> bookList = books.stream().filter(book -> book.getName().equalsIgnoreCase(name)).toList();
+        if (bookList.size() == 0){ System.out.printf("Nenhum livro registrado com o título %s!%n", name); }
+        return bookList;
     }
 
     private static List<Book> searchBooks() {
+        if (books.size() == 0) {
+            System.out.println("Nenhum livro registrado no sistema!");
+            return new ArrayList<>();
+        }
         boolean isSearching = true;
         List<Book> foundBooks = new ArrayList<>();
         do{
@@ -133,6 +187,7 @@ public class Library {
                     "Nome",
                     "Autor",
                     "Área de Interesse",
+                    "Todos",
                     "Cancelar"
             };
             printMenu("Pesquisar por: ", menuOptions);
@@ -143,7 +198,8 @@ public class Library {
                     case 1 -> { foundBooks = searchByName(); isSearching = false; }
                     case 2 -> { foundBooks = searchByAuthor(); isSearching = false; }
                     case 3 -> { foundBooks = searchByArea(); isSearching = false; }
-                    case 4 -> isSearching = false;
+                    case 4 -> { foundBooks = books; searchedBy = "All"; isSearching = false; }
+                    case 5 -> isSearching = false;
                     default -> throw new Exception();
                 }
             } catch (Exception ex) {
@@ -167,6 +223,7 @@ public class Library {
                 String[] rows = options[i].split("\n");
                 int j = 0;
                 for(String row : rows){
+                    if (row.isBlank()) { continue; }
                     String formattedRow;
                     if (j++ == 0) { formattedRow = String.format("%d. %s", i+1, row); }
                     else { formattedRow = String.format("%s  %s", " ".repeat(String.valueOf(i+1).length()), row); }
@@ -177,7 +234,6 @@ public class Library {
                 options[i] = String.format("%d. %s", i+1, options[i]);
                 if (options[i].length() > largerLength) { largerLength = options[i].length(); }
             }
-
         }
 
         String format = "| %-" + largerLength + "s |\n";
@@ -195,6 +251,19 @@ public class Library {
             }
         }
         System.out.print(separator);
+    }
+
+    public static void updateDatabase(){
+        List<String[]> booksRecords = new ArrayList<>();
+        String[] header = {"nome_do_livro","numero_de_paginas","nome_do_autor","area_de_interesse"};
+        booksRecords.add(header);
+
+        for (Book book : books){
+            String[] record = {book.getName(), String.valueOf(book.getPages()), book.getAuthor(), book.getArea()};
+            booksRecords.add(record);
+        }
+
+        Csv.write(booksRecords, DATABASE_PATH);
     }
 
 }

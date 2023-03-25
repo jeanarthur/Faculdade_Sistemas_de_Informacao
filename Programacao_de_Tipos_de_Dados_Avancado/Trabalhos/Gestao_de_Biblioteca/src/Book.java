@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class Book {
     private String name;
     private int pages;
@@ -15,4 +18,11 @@ public class Book {
     public int getPages() { return pages; }
     public String getAuthor() { return author; }
     public String getArea() { return area; }
+
+    public static List<Book> parseBook(List<String[]> data){
+        List<Book> books = new ArrayList<>();
+        for (String[] row : data){ books.add(new Book(row[0], Integer.parseInt(row[1]), row[2], row[3])); }
+        return books;
+    }
+
 }

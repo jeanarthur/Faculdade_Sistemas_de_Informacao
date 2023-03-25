@@ -1,12 +1,13 @@
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Csv {
 
-    public static void write(List<String[]> data, String fileName) {
+    public static void write(List<String[]> data, String path) {
         try {
-            FileWriter fileWriter = new FileWriter("Programacao_de_Tipos_de_Dados_Avancado/Trabalhos/Gestao_de_Biblioteca/reports/" + fileName + ".csv");
+            FileWriter fileWriter = new FileWriter(path);
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
             for (String[] row : data) {
                 String line = String.join(",", row);
@@ -20,17 +21,23 @@ public class Csv {
         }
     }
 
-    public static List<String[]> read(String fileName) {
+    public static List<String[]> read(String path) {
         List<String[]> data = new ArrayList<>();
+
+
         try {
-            FileReader fileReader = new FileReader("Programacao_de_Tipos_de_Dados_Avancado/Trabalhos/Gestao_de_Biblioteca/reports/" + fileName + ".csv");
+            FileReader fileReader = new FileReader(path);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
             String line;
+            int i = 0;
             while ((line = bufferedReader.readLine()) != null) {
+                if (i++ == 0) { continue; }
                 String[] row = line.split(",");
                 data.add(row);
             }
             bufferedReader.close();
+        } catch (FileNotFoundException fileNotFoundException){
+            return data;
         } catch (IOException e) {
             e.printStackTrace();
         }
