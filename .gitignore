@@ -9,6 +9,9 @@ out/
 .idea/**/usage.statistics.xml
 .idea/**/dictionaries
 .idea/**/shelf
+.idea/encodings.xml
+.idea/csv-plugin.xml
+.idea/inspectionProfiles
 
 # AWS User-specific
 .idea/**/aws.xml
@@ -53,3 +56,7 @@ bin/
 
 ### Mac OS ###
 .DS_Store
+
+### Project Datas ###
+Programacao_de_Tipos_de_Dados_Avancado/Trabalhos/Gestao_de_Biblioteca/reports/**/
+Programacao_de_Tipos_de_Dados_Avancado/Trabalhos/Gestao_de_Biblioteca/src/database.csv
