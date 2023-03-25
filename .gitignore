@@ -58,5 +58,5 @@ bin/
 .DS_Store
 
 ### Project Datas ###
-Programacao_de_Tipos_de_Dados_Avancado/Trabalhos/Gestao_de_Biblioteca/reports/**/
+Programacao_de_Tipos_de_Dados_Avancado/Trabalhos/Gestao_de_Biblioteca/reports/**.csv
 Programacao_de_Tipos_de_Dados_Avancado/Trabalhos/Gestao_de_Biblioteca/src/database.csv
