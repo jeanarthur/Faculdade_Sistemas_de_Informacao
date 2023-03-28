@@ -25,4 +25,17 @@ public class Book {
         return books;
     }
 
+    public static List<String[]> toCsvPattern(List<Book> books){
+        List<String[]> booksRecords = new ArrayList<>();
+        String[] header = {"nome_do_livro","numero_de_paginas","nome_do_autor","area_de_interesse"};
+        booksRecords.add(header);
+
+        for (Book book : books){
+            String[] record = {book.getName(), String.valueOf(book.getPages()), book.getAuthor(), book.getArea()};
+            booksRecords.add(record);
+        }
+
+        return booksRecords;
+    }
+
 }
