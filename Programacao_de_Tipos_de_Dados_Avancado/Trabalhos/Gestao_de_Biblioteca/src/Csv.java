@@ -1,6 +1,5 @@
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class Csv {
@@ -23,7 +22,6 @@ public class Csv {
 
     public static List<String[]> read(String path) {
         List<String[]> data = new ArrayList<>();
-
 
         try {
             FileReader fileReader = new FileReader(path);

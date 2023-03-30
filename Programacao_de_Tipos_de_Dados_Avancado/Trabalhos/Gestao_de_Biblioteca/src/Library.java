@@ -44,14 +44,7 @@ public class Library {
         if (books.size() != 0){
             LocalDateTime date = LocalDateTime.now();
             DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy_HH-mm-ss");
-            List<String[]> booksRecords = new ArrayList<>();
-            String[] header = {"nome_do_livro","numero_de_paginas","nome_do_autor","area_de_interesse"};
-            booksRecords.add(header);
-
-            for (Book book : books){
-                String[] record = {book.getName(), String.valueOf(book.getPages()), book.getAuthor(), book.getArea()};
-                booksRecords.add(record);
-            }
+            List<String[]> booksRecords = Book.toCsvPattern(books);
 
             String filename = String.format("booksReportBy%s_%s.csv", searchedBy, date.format(dateFormatter));
             Csv.write(booksRecords, REPORT_PATH + filename);
@@ -85,7 +78,7 @@ public class Library {
     }
 
     private static void addBook() {
-        System.out.println("Preencha os campos: ");
+        System.out.println("Preencha os campos ");
         String name = getInput("Título: ");
         String author = getInput("Autor: ");
         String area = getInput("Área de interesse: ");
@@ -254,15 +247,7 @@ public class Library {
     }
 
     public static void updateDatabase(){
-        List<String[]> booksRecords = new ArrayList<>();
-        String[] header = {"nome_do_livro","numero_de_paginas","nome_do_autor","area_de_interesse"};
-        booksRecords.add(header);
-
-        for (Book book : books){
-            String[] record = {book.getName(), String.valueOf(book.getPages()), book.getAuthor(), book.getArea()};
-            booksRecords.add(record);
-        }
-
+        List<String[]> booksRecords = Book.toCsvPattern(books);
         Csv.write(booksRecords, DATABASE_PATH);
     }
 
