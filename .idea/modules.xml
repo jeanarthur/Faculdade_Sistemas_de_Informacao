@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/Programacao_de_Tipos_de_Dados_Avancado/Exercicios/Exercicio_03/Exercicio_03.iml" filepath="$PROJECT_DIR$/Programacao_de_Tipos_de_Dados_Avancado/Exercicios/Exercicio_03/Exercicio_03.iml" />
       <module fileurl="file://$PROJECT_DIR$/Programacao_de_Tipos_de_Dados_Avancado/Exercicios/Exercicios.iml" filepath="$PROJECT_DIR$/Programacao_de_Tipos_de_Dados_Avancado/Exercicios/Exercicios.iml" />
       <module fileurl="file://$PROJECT_DIR$/Programacao_de_Tipos_de_Dados_Avancado/Exercicios/Exercicios_02/Exercicios_02.iml" filepath="$PROJECT_DIR$/Programacao_de_Tipos_de_Dados_Avancado/Exercicios/Exercicios_02/Exercicios_02.iml" />
       <module fileurl="file://$PROJECT_DIR$/Programacao_de_Tipos_de_Dados_Avancado/Exercicios/Exercicios_sobre_manipulacao_de_strings_e_vetores/Exercicios_sobre_manipulacao_de_strings_e_vetores.iml" filepath="$PROJECT_DIR$/Programacao_de_Tipos_de_Dados_Avancado/Exercicios/Exercicios_sobre_manipulacao_de_strings_e_vetores/Exercicios_sobre_manipulacao_de_strings_e_vetores.iml" />
