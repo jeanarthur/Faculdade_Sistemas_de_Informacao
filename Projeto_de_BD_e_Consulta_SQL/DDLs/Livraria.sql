@@ -1,4 +1,6 @@
-#Exercício_1;
+-- Exercício_1
+-- Escrever o script DDL para o modelo físico.
+--  a) Escrever as restrições de chave estrangeira para o modelo físico.
 CREATE TABLE Livro (
     etiqueta INTEGER NOT NULL,
     titulo VARCHAR(50) NOT NULL,
@@ -53,10 +55,15 @@ CREATE TABLE Aluga (
     CONSTRAINT aluga_livro_fk FOREIGN KEY (etiqueta) REFERENCES Livro (etiqueta)
 );
 
-#Exercício_2;
+-- Exercício_2
+-- Escrevar um comando para criar uma coluna nova, chamada ATIVO, na tabela de Cartao, do tipo
+-- boolean. Este campo deve aceitar valores null.
 ALTER TABLE Cartao ADD COLUMN Ativo BOOLEAN NULL;
 
-#Exercício_3;
+-- Exercício_3
+-- Escrever os comandos para inserir dados (fictícios) em todas as tabelas.
+--  a) Inserir dados para suportar os próximos exercícios.
+
 -- Inserção na tabela Livro
 INSERT INTO Livro (etiqueta, titulo, categoria, ano_lancamento, qtd_copias)
 VALUES (1, 'A Origem', 'Ficção', 2010, 10);
@@ -70,21 +77,21 @@ VALUES (3, 'Harry Potter e a Pedra Filosofal', 'Fantasia', 1997, 8);
 
 -- Inserção na tabela Cliente
 INSERT INTO Cliente (email, telefone, endereco, numero)
-VALUES ('exemplo1@gmail.com', '1234567890', 'Rua Principal, 123', 1);
+VALUES ('joao@email.com', '1234567890', 'Rua Principal, 123', 1);
 
 INSERT INTO Cliente (email, telefone, endereco, numero)
-VALUES ('exemplo2@gmail.com', '9876543210', 'Avenida Central, 456', 2);
+VALUES ('jonas@email.com', '9876543210', 'Avenida Central, 456', 2);
 
 INSERT INTO Cliente (email, telefone, endereco, numero)
-VALUES ('exemplo3@gmail.com', '5555555555', 'Praça da Liberdade, 789', NULL);
+VALUES ('julio@email.com', '5555555555', 'Praça da Liberdade, 789', NULL);
 
 
 -- Inserção na tabela Cartao
 INSERT INTO Cartao (numero, status, creditos, email)
-VALUES (1, 'Ativo', 100, 'exemplo1@gmail.com');
+VALUES (1, 'Ativo', 100, 'joao@email.com');
 
 INSERT INTO Cartao (numero, status, creditos, email)
-VALUES (2, 'Ativo', 50, 'exemplo2@gmail.com');
+VALUES (2, 'Ativo', 50, 'jonas@email.com');
 
 
 -- Inserção na tabela Autor
@@ -105,8 +112,102 @@ VALUES (98765432100, 2);
 
 -- Inserção na tabela Aluga
 INSERT INTO Aluga (email, etiqueta, data_saida, data_devolucao)
-VALUES ('exemplo1@gmail.com', 1, '2023-06-01', '2023-06-08');
+VALUES ('joao@email.com', 1, '2023-06-01', '2023-06-08');
 
 INSERT INTO Aluga (email, etiqueta, data_saida, data_devolucao)
-VALUES ('exemplo2@gmail.com', 2, '2023-06-02', NULL);
+VALUES ('jonas@email.com', 2, '2023-06-02', NULL);
 
+-- Exercício_4
+-- Escreva os comandos para remover o cartão do cliente joao@email.com sem remover o cliente.
+--  a) atualizar o número do cartão para null.
+UPDATE Cliente
+SET numero = NULL
+WHERE numero = 1;
+
+--  b) deletar o cartão do cliente (ex: cartão número 1).
+DELETE 
+FROM Cartao 
+WHERE numero = 1;
+
+--  c) Porque não podemos deletar o cartão antes de fazer o update?
+--     Porque viola a restrição da chave estrangeira, que precisa da existência de uma chave primária.
+
+-- Exercício_5
+-- Escreva um comando para atualizar a quantidade de cópias para 5 de todos os livros da categoria
+-- “Ação” cujo ano de lançamento seja maior que 2015.
+UPDATE Livro
+SET qtd_copias = 5
+WHERE categoria = 'Ação' AND ano_lancamento > 2015;
+
+-- Exercício_6
+-- Escreva os comandos para inserir os seguintes dados na tabela Aluga:
+-- email | etiqueta | Data de saída | Data de devolução
+-- joao@email.com | 123 | 01/06/2023 | 03/06/2023
+-- jonas@email.com | 456 | 02/06/2023 | 05/06/2023
+-- julio@email.com | 789 | 01/06/2023 | -
+INSERT INTO Aluga (email, etiqueta, data_saida, data_devolucao)
+VALUES('joao@email.com', 2, '01/06/2023', '03/06/2023');
+
+INSERT INTO Aluga (email, etiqueta, data_saida, data_devolucao)
+VALUES('jonas@email.com', 3, '02/06/2023', '05/06/2023');
+
+INSERT INTO Aluga (email, etiqueta, data_saida, data_devolucao)
+VALUES('julio@email.com', 1, '01/06/2023', NULL);
+
+-- Exercicio_7
+-- Escreva um INSERT que viole a chave primária da tabela Aluga.
+--  a) Explique o motivo da violação.
+--    O email, que é uma pfk precisa existir na tabela cliente, pois por ser fk, depende de uma pk.
+
+INSERT INTO Aluga (email, etiqueta, data_saida, data_devolucao)
+VALUES('jean@email.com', 1, '06/06/2023', NULL);
+
+-- Escreva as seguintes consultas:
+--  a) Mostrar o e-mail e a data de saída do livro com etiqueta 1.
+SELECT email, data_saida
+FROM Aluga
+WHERE etiqueta = 1;
+
+--  b) Mostrar as etiquetas dos livros alugados pelo João.
+SELECT etiqueta
+FROM Aluga
+WHERE email = 'joao@email.com';
+
+--  c) Mostrar o nome e telefone dos clientes que não possuem cartão.
+SELECT nome, telefone
+FROM Cliente
+WHERE numero = NULL;
+
+--  d) Mostrar o nome e e-mail dos clientes que usam e-mail do gmail.
+SELECT nome, email
+FROM Cliente
+WHERE email LIKE '%gmail%';
+
+--  e) Mostrar o número dos cartões com status “BLOQUEADO” que possuem saldo positivo.
+SELECT numero
+FROM Cartao
+WHERE status = 'BLOQUEADO' AND creditos > 0;
+
+--  f) Mostrar o número da etiqueta e a data de saída dos livros que ainda não foram devolvidos.
+SELECT etiqueta, data_saida
+FROM Aluga
+WHERE data_devolucao = NULL;
+
+--  g) Mostrar o e-mail dos clientes que possuem livros emprestados.
+SELECT email
+FROM Aluga
+WHERE data_devolucao = NULL;
+
+-- Exercício_9
+-- Escreva dois comandos de DELETE que violem 2 restrições de chaves estrangeiras diferentes.
+--  a) Explique o motivo da violação.
+
+-- Viola a restrição aluga_cliente_fk, pois possui uma fk desse cliente na tabela Aluga.
+DELETE
+FROM Cliente
+WHERE email = 'joao@email.com';
+
+-- Viola a restrição escreve_autor_fk, pois possui uma fk desse cliente na tabela Escreve
+DELETE
+FROM Autor
+WHERE cpf = 12345678900;
