@@ -16,11 +16,13 @@ public class Main {
         produtos.add(new Produto("Furadeira", 900, 18.5));
 
         for (Produto produto : produtos) {
-            CalculadoraDeFrete calculadoraDeFrete = new CalculadoraDeFrete(new FretePorPeso());
-            System.out.printf("Frete (por peso) para %s: R$%.2f\n", produto.getNome(), calculadoraDeFrete.calcular(produto));
-
-            calculadoraDeFrete.setRegraDeCalculo(new FretePorTamanho());
-            System.out.printf("Frete (por tamanho) para %s: R$%.2f\n", produto.getNome(), calculadoraDeFrete.calcular(produto));
+            CalculadoraDeFrete calculadoraDeFrete = new CalculadoraDeFrete();
+            System.out.printf("Frete (por peso) para %s: R$%.2f\n",
+                    produto.getNome(),
+                    calculadoraDeFrete.calcular(new FretePorPeso(), produto));
+            System.out.printf("Frete (por tamanho) para %s: R$%.2f\n",
+                    produto.getNome(),
+                    calculadoraDeFrete.calcular(new FretePorTamanho(), produto));
         }
     }
 
