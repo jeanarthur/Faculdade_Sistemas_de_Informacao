@@ -8,8 +8,8 @@
       <sourceFolder url="file://$MODULE_DIR$/Programacao_Modular_Recursiva/Avaliacao/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Programacao_Modular_Recursiva/Trabalhos/WordDictionary/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Programacao_Orientada_a_Objeto_Avancado/CalculadoraSalario/src" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Programacao_Orientada_a_Objeto_Avancado/GerenciadorDeNotificacoes/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Programacao_Orientada_a_Objeto_Avancado/CentralDeNotificacoes/src" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/.idea/inspectionProfiles" />
     </content>
     <orderEntry type="inheritedJdk" />
