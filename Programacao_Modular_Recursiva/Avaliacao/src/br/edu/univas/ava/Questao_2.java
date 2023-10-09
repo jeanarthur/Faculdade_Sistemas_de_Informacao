@@ -1,4 +1,4 @@
-package br.edu.univas;
+package br.edu.univas.ava;
 
 import java.util.Scanner;
 

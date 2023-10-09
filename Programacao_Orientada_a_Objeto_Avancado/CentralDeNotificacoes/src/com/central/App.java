@@ -1,3 +1,5 @@
+package com.central;
+
 public class App implements INotificacao{
 
     @Override

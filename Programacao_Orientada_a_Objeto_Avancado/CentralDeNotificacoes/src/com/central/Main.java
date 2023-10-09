@@ -1,3 +1,5 @@
+package com.central;
+
 public class Main {
     public static void main(String[] args) {
         GerenciadorDeNotificacoes gerenciadorDeNotificacoes = new GerenciadorDeNotificacoes(new Email());
