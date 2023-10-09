@@ -19,9 +19,9 @@ public class Questao_2 {
             System.out.print(" Brasil: ");
             int golsFeitosNaPartida = scanner.nextInt();
 
-            String timeAdversário = (jogo.split("x")[0].contains("Brasil")) ? jogo.split("x")[1].trim() : jogo.split("x")[0];
+            String timeAdversario = (jogo.split("x")[0].contains("Brasil")) ? jogo.split("x")[1].trim() : jogo.split("x")[0];
 
-            System.out.printf(" %s: ", timeAdversário);
+            System.out.printf(" %s: ", timeAdversario);
             int golsSofridosNaPartida = scanner.nextInt();
 
             if (golsFeitosNaPartida > golsSofridosNaPartida){ pontuacao += 3; }
