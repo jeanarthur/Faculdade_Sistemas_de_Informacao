@@ -32,6 +32,7 @@ function reverso(array){
 console.log(reverso([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]));
 
 // 5. Implemente a funcionalidade do método keys. Ou seja, crie uma função que recebe como parâmetro um objeto e retorna um array com as propriedades do objeto.
+JSON.stringify(a).replace('{', '').replace('}', '').split(',').map(x => x.split(':')).map(x => x[0].replaceAll('"', ''))
 
 // 6. Crie uma função que recebe um array e retorne um array com os números pares. Valide se cada elemento corresponde a um número.
 
