@@ -1,19 +1,19 @@
 public class No {
 
-    private final Enfileiravel itemDaFila;
+    private final Listavel itemDaFila;
     private No anterior;
     private No proximo;
 
-    public No(Enfileiravel itemDaFila) {
+    public No(Listavel itemDaFila) {
         this.itemDaFila = itemDaFila;
     }
 
-    public No(Enfileiravel itemDaFila, No proximo) {
+    public No(Listavel itemDaFila, No proximo) {
         this.itemDaFila = itemDaFila;
         this.proximo = proximo;
     }
 
-    public No(Enfileiravel itemDaFila, No anterior, No proximo) {
+    public No(Listavel itemDaFila, No anterior, No proximo) {
         this.itemDaFila = itemDaFila;
         this.anterior = anterior;
         this.proximo = proximo;
@@ -27,7 +27,7 @@ public class No {
         this.proximo = proximo;
     }
 
-    public Enfileiravel getItemDaFila() {
+    public Listavel getItemDaFila() {
         return itemDaFila;
     }
 

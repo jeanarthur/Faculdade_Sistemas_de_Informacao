@@ -18,7 +18,7 @@ public class Lista {
         return this.primeiro == null;
     }
 
-    public void inserir(Enfileiravel enfileiravel){
+    public void inserir(Listavel enfileiravel){
         No itemDaFila = new No(enfileiravel);
 
         if (this.primeiro == null){
@@ -36,7 +36,7 @@ public class Lista {
 
     }
 
-    public void inserir(Enfileiravel enfileiravel, int posicao){
+    public void inserir(Listavel enfileiravel, int posicao){
         if (posicao < 1 || posicao > this.tamanho + 1){
             return;
         }
@@ -98,7 +98,7 @@ public class Lista {
         this.tamanho--;
     }
 
-    public Enfileiravel remover(Enfileiravel enfileiravel){
+    public Listavel remover(Listavel enfileiravel){
         No itemAtual = this.primeiro;
 
         while(itemAtual != null){
@@ -113,11 +113,11 @@ public class Lista {
         return null;
     }
 
-    public Enfileiravel remover(String id){
+    public Listavel remover(String id){
         No itemAtual = this.primeiro;
 
         while(itemAtual != null){
-            Enfileiravel itemDaFila = itemAtual.getItemDaFila();
+            Listavel itemDaFila = itemAtual.getItemDaFila();
             if (itemDaFila.getId().equals(id)){
                 this.remover(itemAtual);
                 return itemDaFila;
@@ -129,7 +129,7 @@ public class Lista {
         return null;
     }
 
-    public Enfileiravel remover(int posicao){
+    public Listavel remover(int posicao){
         if (posicao < 1 || posicao > this.tamanho){
             return null;
         }
