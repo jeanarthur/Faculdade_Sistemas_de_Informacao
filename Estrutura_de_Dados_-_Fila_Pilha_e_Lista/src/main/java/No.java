@@ -1,20 +1,20 @@
-public class No {
+public class No<T> {
 
-    private final Listavel itemDaFila;
-    private No anterior;
-    private No proximo;
+    private final T item;
+    private No<T> anterior;
+    private No<T> proximo;
 
-    public No(Listavel itemDaFila) {
-        this.itemDaFila = itemDaFila;
+    public No(T item) {
+        this.item = item;
     }
 
-    public No(Listavel itemDaFila, No proximo) {
-        this.itemDaFila = itemDaFila;
+    public No(T item, No proximo) {
+        this.item = item;
         this.proximo = proximo;
     }
 
-    public No(Listavel itemDaFila, No anterior, No proximo) {
-        this.itemDaFila = itemDaFila;
+    public No(T item, No anterior, No proximo) {
+        this.item = item;
         this.anterior = anterior;
         this.proximo = proximo;
     }
@@ -27,15 +27,15 @@ public class No {
         this.proximo = proximo;
     }
 
-    public Listavel getItemDaFila() {
-        return itemDaFila;
+    public T getItem() {
+        return item;
     }
 
-    public No getAnterior() {
+    public No<T> getAnterior() {
         return anterior;
     }
 
-    public No getProximo() {
+    public No<T> getProximo() {
         return proximo;
     }
 }

@@ -1,9 +1,9 @@
 public class SimulacaoPartidaV1 {
 
-    static Lista maoJogador1 = new Lista();
-    static Lista maoJogador2 = new Lista();
-    static Lista monte = new Lista();
-    static Lista mesa = new Lista();
+    static Lista<Peca> maoJogador1 = new Lista<>();
+    static Lista<Peca> maoJogador2 = new Lista<>();
+    static Lista<Peca> monte = new Lista<>();
+    static Lista<Peca> mesa = new Lista<>();
 
     public static void main(String[] args) {
 
@@ -85,7 +85,7 @@ public class SimulacaoPartidaV1 {
         imprimirJogo();
 
         System.out.println("- Rodada 3 -");
-        mesa.inserir(maoJogador1.remover("[2|6]"), 1);
+        mesa.inserir(maoJogador1.remover(4), 1);
         imprimirJogo();
 
         System.out.println("- Rodada 4 -");

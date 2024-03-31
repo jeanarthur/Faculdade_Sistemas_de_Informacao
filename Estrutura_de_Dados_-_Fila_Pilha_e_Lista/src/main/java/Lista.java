@@ -1,9 +1,9 @@
-public class Lista {
+public class Lista<T> {
 
     static final boolean DEBUG = false;
 
-    private No primeiro;
-    private No ultimo;
+    private No<T> primeiro;
+    private No<T> ultimo;
     private long tamanho;
 
     public Lista(){
@@ -18,10 +18,10 @@ public class Lista {
         return this.primeiro == null;
     }
 
-    public void inserir(Listavel enfileiravel){
-        No itemDaFila = new No(enfileiravel);
+    public void inserir(T listavel){
+        No<T> itemDaFila = new No<>(listavel);
 
-        if (this.primeiro == null){
+        if (this.estaVazia()){
             this.primeiro = itemDaFila;
         } else {
             this.ultimo.setProximo(itemDaFila);
@@ -30,18 +30,18 @@ public class Lista {
         this.ultimo = itemDaFila;
         this.tamanho++;
 
-        DEBUG("Inserido", itemDaFila.getItemDaFila().toString());
-        if (itemDaFila.getAnterior() != null) {DEBUG("Anterior", itemDaFila.getAnterior().getItemDaFila().toString());}
-        if (itemDaFila.getProximo() != null) {DEBUG("Proximo", itemDaFila.getProximo().getItemDaFila().toString());}
+        DEBUG("Inserido", itemDaFila.getItem().toString());
+        if (itemDaFila.getAnterior() != null) {DEBUG("Anterior", itemDaFila.getAnterior().getItem().toString());}
+        if (itemDaFila.getProximo() != null) {DEBUG("Proximo", itemDaFila.getProximo().getItem().toString());}
 
     }
 
-    public void inserir(Listavel enfileiravel, int posicao){
+    public void inserir(T listavel, int posicao){
         if (posicao < 1 || posicao > this.tamanho + 1){
             return;
         }
 
-        No itemAtual = this.primeiro;
+        No<T> itemAtual = this.primeiro;
         int posicaoAtual = 1;
 
         while(posicaoAtual < posicao){
@@ -49,10 +49,10 @@ public class Lista {
             itemAtual = itemAtual.getProximo();
         }
 
-        No anterior = itemAtual.getAnterior();
-        No proximo = itemAtual.getProximo();
+        No<T> anterior = itemAtual.getAnterior();
+        No<T> proximo = itemAtual.getProximo();
 
-        No itemDaFila = new No(enfileiravel, anterior, itemAtual);
+        No<T> itemDaFila = new No<>(listavel, anterior, itemAtual);
 
         if (anterior != null){
             anterior.setProximo(itemDaFila);
@@ -73,23 +73,23 @@ public class Lista {
         }
     }
 
-    private void remover(No no){
-        No anterior = no.getAnterior();
-        No proximo = no.getProximo();
+    private void remover(No<T> no){
+        No<T> anterior = no.getAnterior();
+        No<T> proximo = no.getProximo();
 
-        DEBUG("Removendo", no.getItemDaFila().toString());
-        if (proximo != null) DEBUG("Proximo", proximo.getItemDaFila().toString());
-        if (anterior != null) DEBUG("Anterior", anterior.getItemDaFila().toString());
+        DEBUG("Removendo", no.getItem().toString());
+        if (proximo != null) DEBUG("Proximo", proximo.getItem().toString());
+        if (anterior != null) DEBUG("Anterior", anterior.getItem().toString());
 
         if (anterior != null){
-            if (proximo != null) DEBUG("Definindo como proximo do anterior", proximo.getItemDaFila().toString());
+            if (proximo != null) DEBUG("Definindo como proximo do anterior", proximo.getItem().toString());
             anterior.setProximo(proximo);
         } else {
             this.primeiro = proximo;
         }
 
         if (proximo != null){
-            if (anterior != null) DEBUG("Definindo como anterior do proximo", anterior.getItemDaFila().toString());
+            if (anterior != null) DEBUG("Definindo como anterior do proximo", anterior.getItem().toString());
             proximo.setAnterior(anterior);
         } else {
             this.ultimo = anterior;
@@ -98,13 +98,13 @@ public class Lista {
         this.tamanho--;
     }
 
-    public Listavel remover(Listavel enfileiravel){
-        No itemAtual = this.primeiro;
+    public T remover(T listavel){
+        No<T> itemAtual = this.primeiro;
 
         while(itemAtual != null){
-            if (itemAtual.getItemDaFila().equals(enfileiravel)){
+            if (itemAtual.getItem().equals(listavel)){
                 this.remover(itemAtual);
-                return enfileiravel;
+                return listavel;
             }
 
             itemAtual = itemAtual.getProximo();
@@ -113,34 +113,18 @@ public class Lista {
         return null;
     }
 
-    public Listavel remover(String id){
-        No itemAtual = this.primeiro;
-
-        while(itemAtual != null){
-            Listavel itemDaFila = itemAtual.getItemDaFila();
-            if (itemDaFila.getId().equals(id)){
-                this.remover(itemAtual);
-                return itemDaFila;
-            }
-
-            itemAtual = itemAtual.getProximo();
-        }
-
-        return null;
-    }
-
-    public Listavel remover(int posicao){
+    public T remover(int posicao){
         if (posicao < 1 || posicao > this.tamanho){
             return null;
         }
 
-        No itemAtual = this.primeiro;
+        No<T> itemAtual = this.primeiro;
         int posicaoAtual = 1;
 
         while(itemAtual != null){
             if (posicaoAtual == posicao){
                 this.remover(itemAtual);
-                return itemAtual.getItemDaFila();
+                return itemAtual.getItem();
             }
 
             posicaoAtual++;
@@ -151,10 +135,10 @@ public class Lista {
     }
 
     public void imprimir(){
-        No itemAtual = this.primeiro;
+        No<T> itemAtual = this.primeiro;
 
         while(itemAtual != null){
-            System.out.print(itemAtual.getItemDaFila().toString() + " ");
+            System.out.print(itemAtual.getItem().toString() + " ");
 
             itemAtual = itemAtual.getProximo();
         }

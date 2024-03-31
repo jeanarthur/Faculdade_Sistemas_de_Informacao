@@ -1,4 +1,4 @@
-public class Peca implements Listavel {
+public class Peca {
 
     int valorA;
     int valorB;
@@ -17,12 +17,7 @@ public class Peca implements Listavel {
     }
 
     @Override
-    public String getId() {
-        return String.format("[%d|%d]", this.valorA, this.valorB);
-    }
-
-    @Override
     public String toString() {
-        return this.getId();
+        return String.format("[%d|%d]", this.valorA, this.valorB);
     }
 }
