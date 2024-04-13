@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Site da Empresa XYZ</title>
+  <style>
+    /* Estilos CSS para a página */
+    body {
+      font-family: Arial, sans-serif;
+    }
+    header {
+      background-color: #333;
+      color: #fff;
+      padding: 10px;
+      text-align: center;
+    }
+    nav {
+      background-color: #f4f4f4;
+      padding: 10px;
+    }
+    nav ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+    }
+    nav ul li {
+      display: inline;
+      margin-right: 10px;
+    }
+    section {
+      padding: 20px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+
+    .fundoColorido{
+      background-color: aqua;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1 id="nome-empresa">Empresa XYZ</h1>
+</header>
+
+<nav>
+  <ul id="menus">
+    <li><a class="menu" href="#">Início</a></li>
+    <li><a class="menu" href="#">Produtos</a></li>
+    <li><a class="menu" href="#">Serviços</a></li>
+    <li><a class="menu" href="#">Contato</a></li>
+  </ul>
+</nav>
+
+<section>
+  <h2>Sobre Nossa Empresa</h2>
+  <p id="sobre">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed viverra justo sed metus aliquam, eget fringilla lectus dapibus.</p>
+  
+  <h2>Nossos Produtos</h2>
+  <ul id="produtos">
+    <li>Produto 1</li>
+    <li>Produto 2</li>
+    <li>Produto 3</li>
+  </ul>
+  
+  <h2>Serviços Oferecidos</h2>
+  <ul id="servicos">
+    <li>Serviço A</li>
+    <li>Serviço B</li>
+    <li>Serviço C</li>
+  </ul>
+  
+  <h2>Contato</h2>
+  <p>Telefone: <span aria-content="telefone">(00) 1234-5678</span></p>
+  <p>Email: <address><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="24474b4a5045504b64414954564157450a474b49">[email&#160;protected]</a></address></p>
+  
+  <h2>Relatório de Vendas</h2>
+  <table id="vendas">
+    <thead>
+      <tr>
+        <th>Data</th>
+        <th>Produto</th>
+        <th>Quantidade</th>
+        <th>Valor</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>01/01/2024</td>
+        <td>Produto A</td>
+        <td>10</td>
+        <td>R$ 100,00</td>
+      </tr>
+      <tr>
+        <td>02/01/2024</td>
+        <td>Produto B</td>
+        <td>8</td>
+        <td>R$ 80,00</td>
+      </tr>
+      <tr>
+        <td>03/01/2024</td>
+        <td>Produto C</td>
+        <td>15</td>
+        <td>R$ 150,00</td>
+      </tr>
+      <tr>
+        <td>01/02/2024</td>
+        <td>Produto A</td>
+        <td>10</td>
+        <td>R$ 120,00</td>
+      </tr>
+      <tr>
+        <td>02/02/2024</td>
+        <td>Produto B</td>
+        <td>8</td>
+        <td>R$ 10,00</td>
+      </tr>
+      <tr>
+        <td>03/02/2024</td>
+        <td>Produto C</td>
+        <td>15</td>
+        <td>R$ 300,00</td>
+      </tr>
+      <tr>
+        <td>01/03/2024</td>
+        <td>Produto A</td>
+        <td>10</td>
+        <td>R$ 190,00</td>
+      </tr>
+      <tr>
+        <td>02/03/2024</td>
+        <td>Produto B</td>
+        <td>8</td>
+        <td>R$ 180,00</td>
+      </tr>
+      <tr>
+        <td>03/03/2024</td>
+        <td>Produto C</td>
+        <td>15</td>
+        <td>R$ 1150,00</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <table>
+    <thead id="resumo-vendas-cab">
+      <tr>
+        <th colspan="3">Resumo de vendas</th>
+      </tr>
+      <tr>
+        <th>Produto</th>
+        <th>Quantidade</th>
+        <th>Valor total</th>
+      </tr>
+    </thead>
+    <tbody id="resumo-vendas">
+
+    </tbody>
+  </table>
+</section>
+
+<footer>
+  <p>&copy; 2024 Empresa XYZ. Todos os direitos reservados.</p>
+</footer>
+
+<script>
+    console.log("Conteúdo de Javascript")
+
+    // console.log(document)
+
+    // Como ler e manipular conteúdo em texto de tags
+    const titulo = document.getElementById("nome-empresa")
+    console.log(titulo)
+    const tituloTexto = titulo.innerText
+    console.log(tituloTexto)
+    setTimeout(() => {
+    titulo.innerText = "Outro título qualquer"
+    }, 1000)
+
+    // PRÁTICA
+    // Alterem o conteúdo sobre a empresa.
+    // 1. Buscar pelo id correto OK
+    // 2. Printar na tela a tag e analisar o conteúdo OK
+    // 3. Printar o conteúdo no console
+    // 4. Alterar o conteúdo sobre a empresa 
+    // (insiram o nome da empresa no text, usando template string)
+    const sobreAEmpresa = document.getElementById("sobre")
+    console.log(sobreAEmpresa)
+    const conteudoSobreAEmpresa = sobreAEmpresa.innerText
+    console.log(conteudoSobreAEmpresa)
+    sobreAEmpresa.innerText = `Novo conteúdo sobre a empresa ${titulo.innerText}`
+
+
+
+    const menus = document.getElementsByClassName("menu")
+    // HTML COLLECTION
+    console.log(menus)
+
+    // Converter uma collection para Array
+    const menusArray = Array.from(menus)
+
+    console.log(menusArray)
+
+    menusArray.forEach(menu => {
+    console.log(menu.innerText)
+    })
+
+    const menuNomes = menusArray.map(menu => menu.innerText)
+
+    console.log(`Os menus do site são: ${menuNomes.join(", ")}`)
+
+
+    const produtosContainer = document.getElementById("produtos")
+
+    console.log(produtosContainer)
+
+    const produtos = produtosContainer.children
+
+    console.log(produtos)
+
+    const produtosArray = Array.from(produtos)
+
+    const produtosNomes = produtosArray.map(prod => prod.innerText)
+
+    console.log(`Produtos ofertados: ${produtosNomes.join(", ")}`)
+
+    /*
+    {
+    "protudo A": 50,
+    "produto B": 100,
+    "produto C": 80
+    }
+    */
+    // 1. Buscar as vendas realizadas
+    // 2. Extrair das vendas o produto e a quantidade vendida
+    // 3. Adicionar no objeto a quantidade vendida daquele prod
+    // 4. Mostrar no console o resultado das vendas
+    const vendas = document.getElementById("vendas")
+    console.log(vendas)
+
+    const conteudovendas = vendas.children[1]
+    console.log(conteudovendas)
+
+    const listaDeVendas = conteudovendas.children
+
+    const listaDeVendasArray = Array.from(listaDeVendas)
+
+    console.log(listaDeVendasArray)
+
+    const produtosVendidos = {}
+    // const valoresTotais = {}
+
+    listaDeVendasArray.forEach(venda => {
+    const produtovendido = venda.children[1].innerText
+    const quantidadevendida = venda.children[2].innerText
+    const valorVendido = venda.children[3].innerText
+
+    const valorVendidoFloat = parseFloat(valorVendido.replace("R$ ", ""))
+
+    console.log(`${produtovendido} - ${quantidadevendida}`)
+    if(!produtosVendidos[produtovendido]){
+        produtosVendidos[produtovendido] = {
+        quantidade: 0,
+        valor: 0
+        }
+    }
+
+    // if(!valoresTotais[produtovendido]){
+    //   valoresTotais[produtovendido] = 0
+    // }
+
+    produtosVendidos[produtovendido].quantidade += parseInt(quantidadevendida)
+    produtosVendidos[produtovendido].valor += valorVendidoFloat
+    // valoresTotais[produtovendido] += valorVendidoFloat
+    })
+
+    // [
+    //   {
+    //     produto: nomeproduto,
+    //     quantidade: 10,
+    //     valor: 1000
+    //   }
+    // ]
+
+    console.log(`Produtos vendidos: `, produtosVendidos)
+
+    const cabecalhoResumo = document.getElementById("resumo-vendas-cab")
+
+    console.log(cabecalhoResumo)
+
+    const tabelaResumo = cabecalhoResumo.parentNode
+
+    console.log(tabelaResumo)
+
+    //'margin-top'
+    tabelaResumo.style.marginTop = '50px'
+
+    const nomesDosProdutos = Object.keys(produtosVendidos)
+
+    console.log(nomesDosProdutos)
+
+    const resumoVendas = document.getElementById("resumo-vendas")
+
+    console.log(resumoVendas)
+
+    function criarElementoComConteudo(elemento, conteudo){
+
+    }
+
+    nomesDosProdutos.forEach(produto => {
+    const tr = document.createElement("tr")
+
+    const tdProduto = document.createElement("td")
+    const tdQuantidade = document.createElement("td")
+    const tdValor = document.createElement("td")
+
+    tdProduto.innerText = produto
+    tdQuantidade.innerText = produtosVendidos[produto].quantidade
+    tdValor.innerText = 
+    `R$ ${produtosVendidos[produto].valor.toFixed(2).replace(".", ",")}`
+
+    tr.appendChild(tdProduto)
+    tr.appendChild(tdQuantidade)
+    tr.appendChild(tdValor)
+
+    resumoVendas.appendChild(tr)
+    })
+
+    const produtosList = Array.from(document.getElementById("produtos").children)
+
+    produtosList.forEach(produto => {
+    produto.addEventListener('click', () => {
+        alert(produto.innerText)
+    })
+    })
+
+    const servicosList = Array.from(document.getElementById("servicos").children)
+
+    servicosList.forEach(servico => {
+    servico.addEventListener('dblclick', (event) => {
+        
+        let existeClasse = false
+        const qtdeClasses = event.target.classList.length
+
+        for(let i = 0; i < qtdeClasses; i++){
+        if(event.target.classList[i] == "fundoColorido"){
+            existeClasse = true
+        }
+        }
+
+        if(existeClasse){
+        event.target.classList.remove("fundoColorido")
+        }else{
+        event.target.classList.add("fundoColorido")
+        }
+    })
+    })
+
+
+
+    const menusList = Array.from(document.getElementById("menus").children)
+
+    menusList.forEach(menu => {
+    const elementoMenu = menu.children[0]
+    elementoMenu.setAttribute("href", "https://www.google.com")
+    })
+
+    //  Fácil:
+    // Inserir um Novo Elemento:
+    // Adicione um novo parágrafo no final da seção "Sobre Nossa Empresa" com o texto "Somos uma empresa comprometida com a qualidade e satisfação dos nossos clientes."
+    let paragrafoAdicionalSobre = document.createElement('p');
+    paragrafoAdicionalSobre.innerText = "Somos uma empresa comprometida com a qualidade e satisfação dos nossos clientes.";
+
+    let sobre = document.getElementById("sobre");
+    sobre.insertAdjacentElement('afterend', paragrafoAdicionalSobre);
+
+    // Alterar Conteúdo de um Elemento:
+    // Altere o texto do último item da lista de produtos para "Produto 4".
+    produtosArray[produtosArray.length - 1].innerText = "Produto 4"
+
+    // Editar Estilos CSS:
+    // Mude a cor de fundo do cabeçalho (
+    // ) para #FF5733.
+    let cabecalho = document.getElementsByTagName('header')[0];
+    cabecalho.style.backgroundColor = "#FF5733";
+
+    // Intermediário:
+    // Calcular Métricas de uma Lista:
+    // Conte quantos itens existem na lista de produtos e exiba essa contagem em um novo parágrafo abaixo da lista.
+    let contagemProdutos = document.createElement('p');
+    contagemProdutos.innerText = `Quantidade de Produtos: ${produtosArray.length}`;
+
+    produtosContainer.insertAdjacentElement('afterend', contagemProdutos);
+
+    // Consulta de Elementos:
+    // Selecione o segundo parágrafo da seção "Serviços Oferecidos" e altere seu texto para "Oferecemos uma variedade de serviços para atender às necessidades de nossos clientes."
+    servicosList[1].innerText = "Oferecemos uma variedade de serviços para atender às necessidades de nossos clientes.";
+
+    // Adicionar Classes CSS:
+    // Adicione a classe "destaque" ao primeiro item da lista de produtos.
+    produtosArray[0].classList.add("destaque");
+
+    // Difícil:
+    // Remover Elemento Existente:
+    // Remova a tabela de relatório de vendas da seção correspondente.
+    let tabelaRelatorio = document.getElementById("vendas");
+    tabelaRelatorio.remove();
+
+    // Manipulação de Atributos:
+    // Altere o atributo href do último item do menu para "contato.html".
+    menusArray[menusArray.length - 1].href = "contato.html";
+
+    // Estilização Dinâmica:
+    // Adicione um evento de clique ao cabeçalho (
+    // ) para alternar entre as cores de fundo #333 e #555 sempre que for clicado.
+    cabecalho.addEventListener('click', () => {
+        cabecalho.style.backgroundColor = (cabecalho.style.backgroundColor === "rgb(51, 51, 51)") ? "#555" : "#333";
+    });
+
+</script>
+</html>
