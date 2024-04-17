@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Site da Empresa XYZ</title>
+  <style>
+    /* Estilos CSS para a página */
+    body {
+      font-family: Arial, sans-serif;
+    }
+    header {
+      background-color: #333;
+      color: #fff;
+      padding: 10px;
+      text-align: center;
+    }
+    nav {
+      background-color: #f4f4f4;
+      padding: 10px;
+    }
+    nav ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+    }
+    nav ul li {
+      display: inline;
+      margin-right: 10px;
+    }
+    section {
+      padding: 20px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+
+    .cabecalhoColorido{
+      background-color: #45a049;
+    }
+  </style>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    form {
+      max-width: 400px;
+      margin: 0 auto;
+    }
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+    input[type="text"],
+    input[type="date"],
+    input[type="number"] {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 10px;
+      box-sizing: border-box;
+    }
+    input[type="submit"] {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    input[type="submit"]:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1 id="nome-empresa">Empresa XYZ</h1>
+</header>
+
+<nav>
+  <ul>
+    <li><a class="menu" id="link01" href="#">Início</a></li>
+    <li><a class="menu" href="#">Produtos</a></li>
+    <li><a class="menu" href="#">Serviços</a></li>
+    <li><a class="menu" href="#">Contato</a></li>
+  </ul>
+</nav>
+
+<section>
+  <h2>Sobre Nossa Empresa</h2>
+  <p id="sobre">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed viverra justo sed metus aliquam, eget fringilla lectus dapibus.</p>
+  
+  <h2>Nossos Produtos</h2>
+  <ul id="produtos">
+    <li>Produto A</li>
+    <li>Produto B</li>
+    <li>Produto C</li>
+  </ul>
+  
+  <h2>Serviços Oferecidos</h2>
+  <ul id="servicos">
+    <li>Serviço A</li>
+    <li>Serviço B</li>
+    <li>Serviço C</li>
+  </ul>
+  
+  <h2>Contato</h2>
+  <p>Telefone: <span aria-content="telefone">(00) 1234-5678</span></p>
+  <p>Email: <address><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="d8bbb7b6acb9acb798bdb5a8aabdabb9f6bbb7b5">[email&#160;protected]</a></address></p>
+  
+  <h2>Relatório de Vendas</h2>
+  <table id="vendas">
+    <thead>
+      <tr>
+        <th>Data</th>
+        <th>Produto</th>
+        <th>Quantidade</th>
+        <th>Valor</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>01/01/2024</td>
+        <td>Produto A</td>
+        <td>10</td>
+        <td>R$ 100,00</td>
+      </tr>
+      <tr>
+        <td>02/01/2024</td>
+        <td>Produto B</td>
+        <td>8</td>
+        <td>R$ 80,00</td>
+      </tr>
+      <tr>
+        <td>03/01/2024</td>
+        <td>Produto C</td>
+        <td>15</td>
+        <td>R$ 150,00</td>
+      </tr>
+      <tr>
+        <td>01/02/2024</td>
+        <td>Produto A</td>
+        <td>10</td>
+        <td>R$ 120,00</td>
+      </tr>
+      <tr>
+        <td>02/02/2024</td>
+        <td>Produto B</td>
+        <td>8</td>
+        <td>R$ 10,00</td>
+      </tr>
+      <tr>
+        <td>03/02/2024</td>
+        <td>Produto C</td>
+        <td>15</td>
+        <td>R$ 300,00</td>
+      </tr>
+      <tr>
+        <td>01/03/2024</td>
+        <td>Produto A</td>
+        <td>10</td>
+        <td>R$ 190,00</td>
+      </tr>
+      <tr>
+        <td>02/03/2024</td>
+        <td>Produto B</td>
+        <td>8</td>
+        <td>R$ 180,00</td>
+      </tr>
+      <tr>
+        <td>03/03/2024</td>
+        <td>Produto C</td>
+        <td>15</td>
+        <td>R$ 1150,00</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <table>
+    <thead id="resumo-vendas-cab">
+      <tr>
+        <th colspan="3">Resumo de vendas</th>
+      </tr>
+      <tr>
+        <th>Produto</th>
+        <th>Quantidade</th>
+        <th>Valor</th>
+      </tr>
+    </thead>
+    <tbody id="resumo-vendas"></tbody>
+  </table>
+
+
+  <div style="margin-top: 50px;">
+    <form id="formulario">
+      <label for="dataVenda">Data da Venda:</label>
+      <input type="date" id="dataVenda" name="dataVenda" required>
+    
+      <label for="nomeProduto">Nome do Produto:</label>
+      <input type="text" id="nomeProduto" name="nomeProduto" required>
+    
+      <label for="quantidadeVendida">Quantidade Vendida:</label>
+      <input type="number" id="quantidadeVendida" name="quantidadeVendida" required>
+    
+      <label for="valorVendido">Valor Vendido (R$):</label>
+      <input type="text" id="valorVendido" name="valorVendido" required>
+    
+      <input type="submit" value="Adicionar Venda">
+    </form>
+  </div>
+
+  <div style="margin-top: 50px;">
+    <form id="formulario-exclusao">
+      <select name="produtos" id="selecao-produtos">
+      </select>
+    
+      <input type="submit" value="Remover">
+    </form>
+  </div>
+</section>
+
+<footer>
+  <p>&copy; 2024 Empresa XYZ. Todos os direitos reservados.</p>
+</footer>
+
+
+<script>
+
+  const adicionarProdutoNaLista = (produto) => {
+    const produtos = document.getElementById("produtos") // UL
+    const listaProdutos = Array.from(produtos.children)
+
+    let produtoExiste = false
+    listaProdutos.forEach(prod => {
+      if(prod.innerText.toUpperCase() == produto.toUpperCase()){
+        produtoExiste = true
+      }
+    })
+
+    if(!produtoExiste){
+      const li = criarElementoComConteudo("li", produto)
+      produtos.appendChild(li)
+    }
+  }
+
+  const formatarData = (data) => {
+    const date = new Date(data.replace("-", "/"))
+    
+    // getDate - 1 a 31
+    const dia = new String(date.getDate()).padStart(2, '0')
+
+    // getMonth - 0 a 11
+    const mes = new String(date.getMonth() + 1).padStart(2, '0')
+
+    // getYear - 24
+    // getFullYear - 2024
+    const ano = date.getFullYear()
+
+    return `${dia}/${mes}/${ano}`
+  }
+
+  const formatarNumero = (numero) => {
+    return `R$ ${parseFloat(numero).toFixed(2).replace('.', ',')}`
+  }
+
+  const addVenda = (event) => {
+    event.preventDefault()
+    const form = event.target
+
+    const { dataVenda, nomeProduto, quantidadeVendida, valorVendido } = form
+
+    const tr = criarElementoComConteudo("tr")
+    const tdData =  criarElementoComConteudo("td", dataVenda.value)
+    const tdProduto = criarElementoComConteudo("td", nomeProduto.value)
+    const tdQuantidade = criarElementoComConteudo("td", quantidadeVendida.value)
+    const tdValor = criarElementoComConteudo("td", formatarNumero(valorVendido.value))
+
+    tr.appendChild(tdData)
+    tr.appendChild(tdProduto)
+    tr.appendChild(tdQuantidade)
+    tr.appendChild(tdValor)
+
+    const tabelaVendas = document.getElementById("vendas")
+    tabelaVendas.children[1].appendChild(tr)
+
+    form.reset()
+
+    atualizaProdutosVendidos(produtosVendidos)
+  }
+  
+  const removerVenda = (event) => {
+    event.target.parentNode.parentNode.remove()
+    atualizaProdutosVendidos(produtosVendidos)
+  } 
+
+  const produtosVendidos = {}
+  document.getElementById("resumo-vendas-cab").parentNode.style.marginTop = '50px'
+  function zerarProdutos(produtos){
+    Object.keys(produtos).forEach(prod => {
+      produtosVendidos[prod] = {
+        quantidade: 0,
+        valor: 0
+      }
+    })
+  }
+  
+  function atualizaProdutosVendidos(produtosVendidos){
+    zerarProdutos(produtosVendidos)
+    const vendas = document.getElementById("vendas")
+    const conteudovendas = vendas.children[1]
+    const listaDeVendas = conteudovendas.children
+    const listaDeVendasArray = Array.from(listaDeVendas)
+
+    listaDeVendasArray.forEach(venda => {
+      const vendaExtraida = extrairDadosDaVenda(venda)
+      
+      addProdutoVendido(produtosVendidos, vendaExtraida)
+    })
+
+    montarResumoDeVendas(produtosVendidos)
+    adicionarProdutosParaExcluir();
+  }
+
+  function extrairDadosDaVenda(vendaLine){
+    const produto = vendaLine.children[1].innerText
+    const quantidade = parseInt(vendaLine.children[2].innerText)
+    const valorVendido = vendaLine.children[3].innerText
+
+    const valor = parseFloat(valorVendido.replace('R$ ', ''))
+
+    return {
+      produto,
+      quantidade,
+      valor
+    }
+  }
+
+  function addProdutoVendido(produtosVendidos, venda){
+    if(!produtosVendidos[venda.produto]){
+      produtosVendidos[venda.produto] = {
+        quantidade: 0,
+        valor: 0
+      }
+    }
+
+    produtosVendidos[venda.produto].quantidade += venda.quantidade
+    produtosVendidos[venda.produto].valor += venda.valor
+  }
+
+  function criarElementoComConteudo(elemento, conteudo){
+    const node = document.createElement(elemento)
+    if(conteudo){
+      node.innerText = conteudo
+    }
+    return node
+  }
+
+  function montarResumoDeVendas(produtosVendidos){
+    const resumo = document.getElementById("resumo-vendas")
+    resumo.innerHTML = ""
+
+    Object.keys(produtosVendidos).forEach(produto => {
+      const tr = criarElementoComConteudo("tr")
+      const tdProduto = criarElementoComConteudo("td", produto)
+      const tdQuantidade = criarElementoComConteudo("td", produtosVendidos[produto].quantidade)
+      const tdValor = criarElementoComConteudo("td", `R$ ${produtosVendidos[produto].valor.toFixed(2).replace('.', ',')}`)
+
+      tr.appendChild(tdProduto)
+      tr.appendChild(tdQuantidade)
+      tr.appendChild(tdValor)
+
+      resumo.appendChild(tr)
+    })
+  }
+
+  atualizaProdutosVendidos(produtosVendidos)
+
+
+
+  const formulario = document.getElementById("formulario")
+
+  console.log(formulario)
+
+  formulario.addEventListener("submit", (event) => {
+    // Cancelar a execução padrão de um evento, não funciona apenas com formulários
+    event.preventDefault()
+
+    // obter o formulario a partir do evento
+    const formulario = event.target
+
+    // extrair os dados de dentro do form
+    // não precisamos usar o getElementById pois como colocamos name nos inputs
+    // podemos acessar diretamente de dentro do formulario
+    const dataVenda = formulario.dataVenda
+    const nomeProduto = formulario.nomeProduto
+    const quantidadeVendida = formulario.quantidadeVendida
+    const valorVendido = formulario.valorVendido
+
+    const tr = criarElementoComConteudo("tr")
+
+    // para pegar o conteudo inserido dentro de um input usamos a propriedade value
+    const tdData = criarElementoComConteudo("td", formatarData(dataVenda.value))
+    const tdProduto = criarElementoComConteudo("td", nomeProduto.value)
+    const tdQuantidade = criarElementoComConteudo("td", quantidadeVendida.value)
+    const tdValor = criarElementoComConteudo("td", formatarNumero(valorVendido.value))
+
+    const tdRemover = criarElementoComConteudo("td")
+    const botaoRemover = criarElementoComConteudo("button", "Excluir")
+    tdRemover.appendChild(botaoRemover)
+    botaoRemover.addEventListener("click", removerVenda)
+
+    tr.appendChild(tdData)
+    tr.appendChild(tdProduto)
+    tr.appendChild(tdQuantidade)
+    tr.appendChild(tdValor)
+    tr.appendChild(tdRemover)
+
+    const tabelaVendas = document.getElementById("vendas")
+    tabelaVendas.children[1].appendChild(tr)
+
+    adicionarProdutoNaLista(nomeProduto.value)
+
+    // A função reset do elemento formulario limpa os campos possibilitando nova inserção
+    formulario.reset()
+
+    atualizaProdutosVendidos(produtosVendidos)
+  })
+
+
+
+  // PRÁTICA
+  // Criar a formatação dos campos data e valor de venda na tabelas de vendas
+  // ao add uma nova venda
+
+  // Criar um botão de excluir uma venda na tabela de vendas
+  // Deve atualizar o resumo ao atualizar
+  // Lembre-se de adicionar esta coluna na submissão do formulário
+
+
+
+  const vendasHead = document.getElementById("vendas").children[0]
+  const vendasBody = document.getElementById("vendas").children[1]
+
+  const tdHead = criarElementoComConteudo("th")
+  vendasHead.children[0].appendChild(tdHead)
+
+  Array.from(vendasBody.children).forEach(tr => {
+    const td = criarElementoComConteudo("td")
+    const botao = criarElementoComConteudo("button", "Excluir")
+
+    botao.addEventListener("click", removerVenda)
+
+    td.appendChild(botao)
+    tr.appendChild(td)
+  })
+
+  function adicionarProdutosParaExcluir() {
+    let selecaoProdutos = document.getElementById('selecao-produtos');
+    selecaoProdutos.innerHTML = '';
+
+    Object.keys(produtosVendidos).forEach(produto => {
+      let opcao = document.createElement('option');
+      opcao.value = produto;
+      opcao.innerText = produto;
+      selecaoProdutos.appendChild(opcao);
+    });
+  }
+
+  const formularioExclusao = document.getElementById('formulario-exclusao');
+  formularioExclusao.addEventListener('submit', removerProdutoDoSite)
+
+  function removerProdutoDoSite(event){
+    event.preventDefault();
+    let selecaoProdutos = document.getElementById('selecao-produtos');
+    let produtoParaExcluir = selecaoProdutos.value;
+
+    let listaProdutos = document.getElementById('produtos');
+    [...listaProdutos.children].forEach(produto => {
+      if (produto.innerText === produtoParaExcluir) {
+        produto.remove();
+      }
+    });
+
+    const vendas = document.getElementById("vendas")
+    const conteudovendas = vendas.children[1]
+    const listaDeVendas = conteudovendas.children
+    const listaDeVendasArray = Array.from(listaDeVendas)
+    
+    listaDeVendasArray.forEach(produto => {
+      // console.log(produto.children[1].innerText);
+      if (produto.children[1].innerText === produtoParaExcluir){
+        produto.remove();
+      }
+    })
+
+    delete produtosVendidos[produtoParaExcluir];
+    atualizaProdutosVendidos(produtosVendidos);
+    
+  }
+
+
+
+  /*
+    0. Refatorar o codigo
+    1. como adicionar ou remover classes de um elemento
+    2. como alterar o atributo href de um link (setAttribute)
+    3. eventos de elementos
+    3.1 Como executar uma acao no evento onclick
+    3.2 Como executar uma acao no evento dblclick
+    Pratica: Escreva um codigo que ao clicar duas vezes no titulo sobre a empresa deixe o texto do paragrafo em negrito adicionando uma classe para isso
+
+    4. Criar o formulario
+    5. Como capturar o evento de submissao do formulario
+    6. Como evitar que o formulario seja enviado na web
+    7. Como obter os valores dos campos dos formularios
+    8. Como limpar o formulario apos submissao
+    9. Como inserir uma nova linha na tabela de produtos vendidos
+    10. Como recalcular o resumo de vendas.
+    Pratica: Criar um botao para excluir uma venda e recalcular o resumo de vendas
+    Pratica 2: Criar um botao para excluir um produto e excluir ele da tabela de vendas e do resumo de vendas.
+  
+  */
+</script>
+
+</body>
+</html>
