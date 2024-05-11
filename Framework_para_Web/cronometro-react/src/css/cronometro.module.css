@@ -1,0 +1,53 @@
+.divCronometro {
+    display: flex;
+    flex-direction: column;
+    height: 60%;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    left: 13%;
+    top: 0
+}
+
+.numero {
+    font-size: 10vw;
+    font-weight: bold;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.secaoBotoes {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.secaoBotoes > button {
+    width: 15vw;
+    height: 10vh;
+    font-size: 1.5vw;
+    border-radius: 2vw;
+    background-color: lightslategray;
+}
+
+.divRegistros {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 40%;
+    margin-top: 45%;
+}
+
+.divVoltas {
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+}
+
+.divVoltas > p {
+    font-size: 5vw;
+    margin: 0;
+    padding: 0;
+}
+
+.divCronometro > h2 {
+    padding-bottom: 0;
+}
